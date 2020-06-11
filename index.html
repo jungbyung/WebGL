@@ -1,0 +1,39 @@
+<style>
+	canvas {
+  border: 1px solid black;
+}
+#game-surface
+{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+#text{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 2;
+}
+#fps{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 3;
+}
+</style>
+<html>
+	<head>
+		<title> WebGL - Objectify</title>
+	</head>
+	<body onload="InitDemo();">
+
+		<canvas id="game-surface" width = "800" height ="600">
+			Your Browser does not support HTML5
+		</canvas>
+		<canvas id="fps" width = "800" height ="600"></canvas>
+		<canvas id="text" width = "800" height ="600"></canvas>
+		<script src="gl-matrix.js"></script>
+		<script src="Timer.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
