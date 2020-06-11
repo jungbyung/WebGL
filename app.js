@@ -87,7 +87,6 @@ var loadImage = function (url, callback)
 	image.src = url;
 };
 
-
 var loadJSONResource = function ( url, callback)
 {
 	loadTextResource(url, function(err, result)
@@ -278,8 +277,7 @@ var Initialize = function(vsText, fsText)
 
 	Reset();
 
-	app.gl.clearColor(0.75, 0.85, 0.8, 1.0);
-	app.gl.clear(app.gl.COLOR_BUFFER_BIT | app.gl.DEPTH_BUFFER_BIT);
+	app.gl.viewport(0, 0, app.canvas.width, app.canvas.height);
 	app.gl.enable(app.gl.DEPTH_TEST);
 	app.gl.enable(app.gl.CULL_FACE);
 	app.gl.frontFace(app.gl.CCW);
@@ -312,6 +310,38 @@ var Initialize = function(vsText, fsText)
 
 
 (function(){
+	document.addEventListener("mousemove", function(e){
+		var rect = app.canvas.getBoundingClientRect();
+		var px = (e.clientX - rect.left) * app.canvas.width / app.canvas.width;
+		var py = (e.clientY - rect.top) * app.canvas.height / app.canvas.height;
+
+		if(e.clientX >= rect.left && e.clientX <= rect.width &&
+			e.clientY >= rect.top && e.clientY <= rect.height)
+		{
+			console.log("canvas in " + app.canvas.id);
+		}
+		//console.log("x = " + e.clientX + ", y = "+e.clientY);
+		//console.log("x = " + px + ", y = "+py);
+	});
+
+	document.addEventListener("mousedown", function(e){
+		var rect = app.canvas.getBoundingClientRect();
+		var px = (e.clientX - rect.left) * app.canvas.width / app.canvas.width;
+		var py = (e.clientY - rect.top) * app.canvas.height / app.canvas.height;
+
+		if(e.clientX >= rect.left && e.clientX <= rect.width &&
+			e.clientY >= rect.top && e.clientY <= rect.height)
+		{
+			console.log("click in canvas id" + app.canvas.id);
+		}
+		else
+		{
+			console.log("click not canvas id" + app.canvas.id);
+
+		}
+		//console.log("x = " + e.clientX + ", y = "+e.clientY);
+		//console.log("x = " + px + ", y = "+py);
+	});
   document.addEventListener('keydown', function(e){
     const keyCode = e.keyCode;
     console.log('pushed key ' + e.key);
@@ -392,4 +422,8 @@ function loop()
 	Draw();
 
 	app.loop = requestAnimationFrame(loop);
+}
+
+function MouseMove(e)
+{
 }
